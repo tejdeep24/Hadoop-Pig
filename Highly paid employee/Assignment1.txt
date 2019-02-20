@@ -1,0 +1,19 @@
+Findout top 3 highly paid employees from the given dataset.
+
+	empdata = load '/home/hduser/employee.txt' using PigStorage(',') as(
+	emp_org:chararray,
+	emp_name:chararray,
+	emp_salary:int
+	);
+
+	sorted = order empdata by emp_salary desc;
+	
+	lmt = limit sorted 3;
+
+Findout all employees getting more than 10K salary;
+
+	emp_high_pay = filter empdata by emp_salary > 10000;
+
+Findout all employees getting more than 10K salary and not in TCS;
+	
+	emp_high_pay = filter empdata by emp_salary > 10000 and emp_org != 'TCS';
